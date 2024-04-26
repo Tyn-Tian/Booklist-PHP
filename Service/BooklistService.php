@@ -26,7 +26,7 @@ class BooklistServiceImpl implements BooklistService
         echo "Booklist" . PHP_EOL;
         $booklist = $this->booklistRepository->findAll();
         foreach ($booklist as $number => $value) {
-            echo "$number. " . $value->getBook() . PHP_EOL;
+            echo $value->getId(). ". " . $value->getBook() . PHP_EOL;
         }
     }
 
