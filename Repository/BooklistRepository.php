@@ -17,29 +17,50 @@ class BooklistRepositoryImpl implements BooklistRepository
 {
     public array $booklist = array();
 
+    public function __construct(
+        private \PDO $connection
+    ) {
+    }
+
     public function findAll(): array
     {
-        return $this->booklist;
+        $sql = "SELECT id, book FROM booklist";
+        $result = $this->connection->prepare($sql);
+        $result->execute();
+
+        $resultArray = [];
+
+        foreach ($result as $row) {
+            $booklist = new Booklist();
+            $booklist->setId($row['id']);
+            $booklist->setBook($row['book']);
+
+            $resultArray[] = $booklist;
+        }
+
+        return $resultArray;
     }
 
     public function save(Booklist $booklist): void
     {
-        $number = sizeof($this->booklist) + 1;
-        $this->booklist[$number] = $booklist;
+        $sql = "INSERT INTO booklist(book) VALUES (?)";
+        $result = $this->connection->prepare($sql);
+        $result->execute([$booklist->getBook()]);
     }
 
     public function remove(int $number): bool
     {
-        if ($number > sizeof($this->booklist)) {
+        $sql = "SELECT id FROM booklist WHERE id = ?";
+        $result = $this->connection->prepare($sql);
+        $result->execute([$number]);
+
+        if ($result->fetch()) {
+            $sql = "DELETE FROM booklist WHERE id = ?";
+            $result = $this->connection->prepare($sql);
+            $result->execute([$number]);
+            return true;
+        } else {
             return false;
         }
-
-        for ($i = $number; $i < sizeof($this->booklist); $i++) {
-            $this->booklist[$i] = $this->booklist[$i + 1];
-        }
-
-        unset($this->booklist[sizeof($this->booklist)]);
-
-        return true;
     }
 }
