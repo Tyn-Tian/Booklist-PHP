@@ -1,0 +1,3 @@
+<?php
+
+$books = array();
