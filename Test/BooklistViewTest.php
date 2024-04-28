@@ -11,10 +11,12 @@ require_once "./Service/BooklistService.php";
 require_once "./View/BooklistView.php";
 require_once "./Helper/InputHelper.php";
 require_once "./Helper/AddBooklistHelper.php";
+require_once "./Config/Database.php";
 
 function testViewShowBooklist(): void
-{
-    $booklistRepository = new BooklistRepositoryImpl();
+{   
+    $connection = \Config\Database::getConnection();
+    $booklistRepository = new BooklistRepositoryImpl($connection);
     $booklistService = new BooklistServiceImpl($booklistRepository);
     $booklistView = new BooklistView($booklistService);
 
@@ -25,7 +27,8 @@ function testViewShowBooklist(): void
 
 function testViewAddBooklist(): void
 {
-    $booklistRepository = new BooklistRepositoryImpl();
+    $connection = \Config\Database::getConnection();
+    $booklistRepository = new BooklistRepositoryImpl($connection);
     $booklistService = new BooklistServiceImpl($booklistRepository);
     $booklistView = new BooklistView($booklistService);
 
@@ -40,7 +43,8 @@ function testViewAddBooklist(): void
 
 function testViewRemoveBooklist(): void 
 {
-    $booklistRepository = new BooklistRepositoryImpl();
+    $connection = \Config\Database::getConnection();
+    $booklistRepository = new BooklistRepositoryImpl($connection);
     $booklistService = new BooklistServiceImpl($booklistRepository);
     $booklistView = new BooklistView($booklistService);
 
