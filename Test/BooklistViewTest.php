@@ -1,23 +1,18 @@
 <?php
 
-use Repository\BooklistRepositoryImpl;
-use Service\BooklistServiceImpl;
-use View\BooklistView;
-use Helper\AddBooklistHelper;
+require_once "./vendor/autoload.php";
 
-require_once "./Entity/Booklist.php";
-require_once "./Repository/BooklistRepository.php";
-require_once "./Service/BooklistService.php";
-require_once "./View/BooklistView.php";
-require_once "./Helper/InputHelper.php";
-require_once "./Helper/AddBooklistHelper.php";
-require_once "./Config/Database.php";
+use BooklistPhp\Config\Database;
+use BooklistPhp\Repository\BooklistRepository;
+use BooklistPhp\Service\BooklistService;
+use BooklistPhp\View\BooklistView;
+use BooklistPhp\Helper\AddBooklistHelper;
 
 function testViewShowBooklist(): void
 {   
-    $connection = \Config\Database::getConnection();
-    $booklistRepository = new BooklistRepositoryImpl($connection);
-    $booklistService = new BooklistServiceImpl($booklistRepository);
+    $connection = Database::getConnection();
+    $booklistRepository = new BooklistRepository($connection);
+    $booklistService = new BooklistService($booklistRepository);
     $booklistView = new BooklistView($booklistService);
 
     AddBooklistHelper::addBooklist($booklistService);
@@ -27,9 +22,9 @@ function testViewShowBooklist(): void
 
 function testViewAddBooklist(): void
 {
-    $connection = \Config\Database::getConnection();
-    $booklistRepository = new BooklistRepositoryImpl($connection);
-    $booklistService = new BooklistServiceImpl($booklistRepository);
+    $connection = Database::getConnection();
+    $booklistRepository = new BooklistRepository($connection);
+    $booklistService = new BooklistService($booklistRepository);
     $booklistView = new BooklistView($booklistService);
 
     AddBooklistHelper::addBooklist($booklistService);
@@ -43,9 +38,9 @@ function testViewAddBooklist(): void
 
 function testViewRemoveBooklist(): void 
 {
-    $connection = \Config\Database::getConnection();
-    $booklistRepository = new BooklistRepositoryImpl($connection);
-    $booklistService = new BooklistServiceImpl($booklistRepository);
+    $connection = Database::getConnection();
+    $booklistRepository = new BooklistRepository($connection);
+    $booklistService = new BooklistService($booklistRepository);
     $booklistView = new BooklistView($booklistService);
 
     AddBooklistHelper::addBooklist($booklistService);

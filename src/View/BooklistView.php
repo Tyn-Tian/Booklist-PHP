@@ -1,9 +1,9 @@
 <?php
 
-namespace View;
+namespace BooklistPhp\View;
 
-use Helper\InputHelper;
-use Service\BooklistService;
+use BooklistPhp\Service\BooklistService;
+use BooklistPhp\Helper\InputHelper;
 
 class BooklistView
 {

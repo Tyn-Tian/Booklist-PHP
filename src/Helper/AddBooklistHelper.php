@@ -1,8 +1,8 @@
 <?php 
 
-namespace Helper;
+namespace BooklistPhp\Helper;
 
-use Service\BooklistService;
+use BooklistPhp\Service\BooklistService;
 
 class AddBooklistHelper
 {
