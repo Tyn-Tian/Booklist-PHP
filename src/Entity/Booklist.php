@@ -1,6 +1,6 @@
 <?php
 
-namespace Entity;
+namespace BooklistPhp\Entity;
 
 class Booklist
 {

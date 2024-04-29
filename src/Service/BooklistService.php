@@ -1,11 +1,11 @@
 <?php
 
-namespace Service;
+namespace BooklistPhp\Service;
 
-use Entity\Booklist;
-use Repository\BooklistRepository;
+use BooklistPhp\Entity\Booklist;
+use BooklistPhp\Repository\BooklistRepository;
 
-interface BooklistService
+interface BooklistServiceInterface
 {
     function showBooklist(): void;
 
@@ -14,7 +14,7 @@ interface BooklistService
     function removeBooklist(int $number): void;
 }
 
-class BooklistServiceImpl implements BooklistService
+class BooklistService implements BooklistServiceInterface
 {
     public function __construct(
         private BooklistRepository $booklistRepository

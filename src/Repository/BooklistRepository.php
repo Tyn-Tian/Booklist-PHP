@@ -1,10 +1,10 @@
 <?php
 
-namespace Repository;
+namespace BooklistPhp\Repository;
 
-use Entity\Booklist;
+use BooklistPhp\Entity\Booklist;
 
-interface BooklistRepository
+interface BooklistRepositoryInterface
 {
     function findAll(): array;
 
@@ -13,7 +13,7 @@ interface BooklistRepository
     function remove(int $number): bool;
 }
 
-class BooklistRepositoryImpl implements BooklistRepository
+class BooklistRepository implements BooklistRepositoryInterface
 {
     public array $booklist = array();
 

@@ -1,21 +1,17 @@
 <?php
 
-require_once "./Entity/Booklist.php";
-require_once "./Repository/BooklistRepository.php";
-require_once "./Service/BooklistService.php";
-require_once "./Helper/AddBooklistHelper.php";
-require_once "./Config/Database.php";
+require_once "./vendor/autoload.php";
 
-use Entity\Booklist;
-use Repository\BooklistRepositoryImpl;
-use Service\BooklistServiceImpl;
-use Helper\AddBooklistHelper;
+use BooklistPhp\Config\Database;
+use BooklistPhp\Repository\BooklistRepository;
+use BooklistPhp\Service\BooklistService;
+use BooklistPhp\Helper\AddBooklistHelper;
 
 function testShowBooklist(): void
 {
-    $connection = \Config\Database::getConnection();
-    $booklistRepository = new BooklistRepositoryImpl($connection);
-    $booklistService = new BooklistServiceImpl($booklistRepository);
+    $connection = Database::getConnection();
+    $booklistRepository = new BooklistRepository($connection);
+    $booklistService = new BooklistService($booklistRepository);
 
     AddBooklistHelper::addBooklist($booklistService);
 
@@ -24,10 +20,10 @@ function testShowBooklist(): void
 
 function testAddBooklist(): void 
 {
-    $connection = \Config\Database::getConnection();
-    $booklistRepository = new BooklistRepositoryImpl($connection);
+    $connection = Database::getConnection();
+    $booklistRepository = new BooklistRepository($connection);
 
-    $booklistService = new BooklistServiceImpl($booklistRepository);
+    $booklistService = new BooklistService($booklistRepository);
     AddBooklistHelper::addBooklist($booklistService);
 
     $booklistService->showBooklist();
@@ -35,10 +31,10 @@ function testAddBooklist(): void
 
 function testRemoveBooklist(): void 
 {
-    $connection = \Config\Database::getConnection();
-    $booklistRepository = new BooklistRepositoryImpl($connection);
+    $connection = Database::getConnection();
+    $booklistRepository = new BooklistRepository($connection);
 
-    $booklistService = new BooklistServiceImpl($booklistRepository);
+    $booklistService = new BooklistService($booklistRepository);
     AddBooklistHelper::addBooklist($booklistService);
 
     $booklistService->showBooklist();
