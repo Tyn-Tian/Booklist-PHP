@@ -1,6 +1,6 @@
 <?php
 
-namespace Booklistphp\Config;
+namespace BooklistPhp\Config;
 
 class Database
 {
