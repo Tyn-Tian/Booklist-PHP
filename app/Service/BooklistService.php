@@ -63,6 +63,7 @@ class BooklistService
         $this->validateAddBooklistRequest($request);
 
         try {
+            Database::beginTransaction();
             $booklist = new Booklist();
             $booklist->book = $request->book;
 
@@ -72,8 +73,10 @@ class BooklistService
             $response = new AddBooklistResponse();
             $response->booklist = $booklist;
 
+            Database::commitTransaction();
             return $response;
         } catch (\Exception $exception) {
+            Database::rollbackTransaction();
             throw $exception;
         }
     }
