@@ -1,6 +1,6 @@
 <?php
 
-// namespace BooklistPhp\Repository;
+namespace BooklistPhp\Repository;
 
 // use BooklistPhp\Entity\Booklist;
 
@@ -98,5 +98,10 @@ class BooklistRepository
         } finally {
             $statement->closeCursor();
         }
+    }
+
+    public function deleteAll() 
+    {
+        $this->connection->exec("DELETE FROM booklist");
     }
 }
