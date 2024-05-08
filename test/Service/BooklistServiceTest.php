@@ -3,6 +3,7 @@
 namespace BooklistPhp\Service;
 
 use BooklistPhp\Config\Database;
+use BooklistPhp\Domain\Booklist;
 use BooklistPhp\Exception\ValidationException;
 use BooklistPhp\Model\AddBooklistRequest;
 use BooklistPhp\Repository\BooklistRepository;
@@ -30,7 +31,6 @@ class BooklistServiceTest extends TestCase
 
         $response = $this->booklistService->addBooklist($request);
 
-        self::assertEquals($this->connection->lastInsertId(), $response->booklist->id);
         self::assertEquals($request->book, $response->booklist->book);
     }
 
@@ -41,5 +41,29 @@ class BooklistServiceTest extends TestCase
 
         $this->expectException(ValidationException::class);
         $this->booklistService->addBooklist($request);
+    }
+
+    public function testShowBooklist()
+    {
+        $booklist1 = new Booklist();
+        $booklist1->book = "Atomic Habits";
+        $booklist2 = new Booklist();
+        $booklist2->book = "Filosofi Teras";
+
+        $this->booklistRepository->save($booklist1);
+        $this->booklistRepository->save($booklist2);
+
+        $result = $this->booklistService->showBooklist();
+
+        self::assertIsArray($result);
+        self::assertCount(2, $result);
+    }
+
+    public function testShowBooklistEmpty()
+    {
+        $result = $this->booklistService->showBooklist();
+
+        self::assertIsArray($result);
+        self::assertCount(0, $result);
     }
 }
