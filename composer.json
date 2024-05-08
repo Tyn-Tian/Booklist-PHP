@@ -3,7 +3,12 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "BooklistPhp\\": "src/"
+            "BooklistPhp\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BooklistPhp\\": "tests"
         }
     },
     "authors": [
@@ -12,5 +17,10 @@
             "email": "kristian2015ok@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "11.1.3"
+    }
 }
