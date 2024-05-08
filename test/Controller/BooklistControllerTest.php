@@ -68,4 +68,11 @@ class BooklistControllerTest extends TestCase
         $this->expectOutputRegex("[Book Title]");
         $this->expectOutputRegex("[Add New Book]");
     }
+
+    public function testPostDeleteBooklistSuccess()
+    {
+        $_GET['id'] = '0';
+        $this->booklistController->postDeleteBooklist();
+        $this->expectOutputRegex("[Location: /]");
+    }
 }
