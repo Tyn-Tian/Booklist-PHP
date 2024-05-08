@@ -66,4 +66,24 @@ class BooklistServiceTest extends TestCase
         self::assertIsArray($result);
         self::assertCount(0, $result);
     }
+
+    public function testDeleteBooklistSuccess()
+    {
+        $booklist = new Booklist();
+        $booklist->book = "Atomic Habits";
+
+        $this->booklistRepository->save($booklist);
+        $booklistId = $this->booklistRepository->findAll();
+
+        $result = $this->booklistService->deleteBooklist($booklistId[0]['id']);
+
+        self::assertTrue($result);
+    }
+
+    public function testDeleteBooklistFailed()
+    {
+        $result = $this->booklistService->deleteBooklist("Failed");
+
+        self::assertFalse($result);
+    }
 }
