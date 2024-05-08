@@ -22,8 +22,11 @@ class BooklistController
 
     public function index(): void
     {
+        $booklist = $this->booklistService->showBooklist();
+
         View::render("index", [
-            "title" => "Booklist PHP"
+            "title" => "Booklist PHP",
+            "booklist" => $booklist
         ]);
     }
 

@@ -6,30 +6,18 @@
             <div class="col-12 pb-5">
                 <a type="button" class="btn btn-outline-success" href="/add">Add New Booklist</a>
             </div>
-            <div class="col-xl-4 col-md-6 col-12 p-2">
-                <div class="card mb-1">
-                    <div class="card-body">
-                        This is some text within a card body.
-                        <a href="#" class="text-danger text-decoration-none">Delete</a>
+            <?php if (isset($model['booklist'])) {
+                foreach ($model['booklist'] as $row) { ?>
+                    <div class="col-xl-4 col-md-6 col-12 p-2">
+                        <div class="card mb-1">
+                            <div class="card-body">
+                                <?= $row['book'] ?>.
+                                <a href="#" class="text-danger text-decoration-none">Delete</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6 col-12 p-2">
-                <div class="card mb-1">
-                    <div class="card-body">
-                        This is some text within a card body.
-                        <a href="#" class="text-danger text-decoration-none">Delete</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6 col-12 p-2">
-                <div class="card mb-1">
-                    <div class="card-body">
-                        This is some text within a card body.
-                        <a href="#" class="text-danger text-decoration-none">Delete</a>
-                    </div>
-                </div>
-            </div>
+                <?php } ?>
+            <?php } ?>
         </div>
     </div>
 </div>
