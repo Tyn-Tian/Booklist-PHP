@@ -104,4 +104,12 @@ class BooklistRepository
     {
         $this->connection->exec("DELETE FROM booklist");
     }
+
+    public function findAll(): array
+    {
+        $statement = $this->connection->prepare("SELECT id, book FROM booklist");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
 }
