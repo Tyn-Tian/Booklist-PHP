@@ -11,7 +11,7 @@
         <?php } ?>
 
         <div class="row justify-content-center">
-            <div class="col-4">
+            <div class="col-xl-4 col-8 col-md-6 col-lg-5">
                 <div class="form-floating mb-3">
                     <input name="book" type="text" class="form-control" id="floatingInput" placeholder="name">
                     <label for="floatingInput">Book Title</label>

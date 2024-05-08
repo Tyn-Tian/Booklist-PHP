@@ -8,7 +8,7 @@
             </div>
             <?php if (isset($model['booklist'])) {
                 foreach ($model['booklist'] as $row) { ?>
-                    <div class="col-xl-4 col-md-6 col-12 p-2">
+                    <div class="col-xl-4 col-md-6 col-12 p-1 p-xl-2">
                         <div class="card mb-1">
                             <div class="card-body">
                                 <?= $row['book'] ?>.
