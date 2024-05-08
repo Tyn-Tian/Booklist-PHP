@@ -52,4 +52,11 @@ class BooklistController
             ]);
         }
     }
+
+    public function postDeleteBooklist()
+    {
+        $id = $_GET['id'];
+        $this->booklistService->deleteBooklist($id);
+        View::redirect("/");
+    }
 }

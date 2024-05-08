@@ -12,7 +12,7 @@
                         <div class="card mb-1">
                             <div class="card-body">
                                 <?= $row['book'] ?>.
-                                <a href="#" class="text-danger text-decoration-none">Delete</a>
+                                <a href="/delete?id=<?= $row['id'] ?>" class="text-danger text-decoration-none">Delete</a>
                             </div>
                         </div>
                     </div>
