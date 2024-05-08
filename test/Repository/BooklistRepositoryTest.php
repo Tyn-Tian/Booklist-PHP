@@ -60,4 +60,24 @@ class BooklistRepositoryTest extends TestCase
         self::assertIsArray($result);
         self::assertCount(0, $result);
     }
+
+    public function testRemoveSuccess()
+    {
+        $booklist = new Booklist();
+        $booklist->book = "Atomic Habits";
+
+        $this->booklistRepository->save($booklist);
+        $booklistId = $this->booklistRepository->findAll();
+
+        $result = $this->booklistRepository->remove($booklistId[0]['id']);
+
+        self::assertTrue($result);
+    }
+
+    public function testRemoveFailed()
+    {
+        $result = $this->booklistRepository->remove("Failed");
+
+        self::assertFalse($result);
+    }
 }
