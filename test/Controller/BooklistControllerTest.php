@@ -5,6 +5,7 @@ namespace BooklistPhp\Controller;
 require_once __DIR__ . "/../helper/helper.php";
 
 use BooklistPhp\Config\Database;
+use BooklistPhp\Domain\Booklist;
 use BooklistPhp\Repository\BooklistRepository;
 use PHPUnit\Framework\TestCase;
 
@@ -24,10 +25,16 @@ class BooklistControllerTest extends TestCase
 
     public function testIndex()
     {
+        $booklist = new Booklist();
+        $booklist->book = "Atomic Habits";
+
+        $this->booklistRepository->save($booklist);
+
         $this->booklistController->index();
 
         $this->expectOutputRegex("[Booklist PHP]");
         $this->expectOutputRegex("[Add New Booklist]");
+        $this->expectOutputRegex("[Atomic Habits]");
     }
 
     public function testAddBooklist()
