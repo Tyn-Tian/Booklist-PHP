@@ -36,4 +36,28 @@ class BooklistRepositoryTest extends TestCase
         $result = $this->booklistRepository->findById("Empty");
         self::assertNull($result);
     }
+
+    public function testFindAll() 
+    {
+        $booklist1 = new Booklist();
+        $booklist1->book = "Atomic Habits";
+        $booklist2 = new Booklist();
+        $booklist2->book = "Filosofi Teras";
+
+        $this->booklistRepository->save($booklist1);
+        $this->booklistRepository->save($booklist2);
+
+        $result = $this->booklistRepository->findAll();
+
+        self::assertIsArray($result);
+        self::assertCount(2, $result);
+    }
+
+    public function testFindAllEmpty()
+    {
+        $result = $this->booklistRepository->findAll();
+        
+        self::assertIsArray($result);
+        self::assertCount(0, $result);
+    }
 }
