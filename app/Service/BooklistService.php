@@ -87,4 +87,9 @@ class BooklistService
             throw new ValidationException("Book name cannot blank");
         }
     }
+
+    public function showBooklist(): array
+    {
+        return $this->booklistRepository->findAll();
+    }
 }
